@@ -2,6 +2,7 @@ const express = require('express');
 const dotenv = require('dotenv');
 const cors = require('cors');
 const connectDB = require('./config/db');
+const authRoutes = require('./routes/authRoutes');
 
 // Load environment variables
 dotenv.config();
@@ -20,6 +21,9 @@ app.use(express.json());
 app.get('/', (req, res) => {
   res.send('Trendora API is running!');
 });
+
+// Routes
+app.use('/api/auth', authRoutes);
 
 // Server Port
 const PORT = process.env.PORT || 5000;
