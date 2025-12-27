@@ -19,7 +19,6 @@ const userSchema = new mongoose.Schema({
   timestamps: true
 });
 
-// Password encrypt karne se pehle
 userSchema.pre('save', async function(next) {
   if (!this.isModified('password')) {
     next();
@@ -28,7 +27,6 @@ userSchema.pre('save', async function(next) {
   this.password = await bcrypt.hash(this.password, salt);
 });
 
-// Password match karne ka method
 userSchema.methods.matchPassword = async function(enteredPassword) {
   return await bcrypt.compare(enteredPassword, this.password);
 };
