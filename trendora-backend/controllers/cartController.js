@@ -1,7 +1,6 @@
 const Cart = require('../models/Cart');
 const Product = require('../models/Product');
 
-// Get User Cart
 const getCart = async (req, res) => {
   try {
     let cart = await Cart.findOne({ user: req.user._id });
@@ -20,7 +19,6 @@ const getCart = async (req, res) => {
   }
 };
 
-// Add Item to Cart
 const addToCart = async (req, res) => {
   try {
     const { productId, quantity, size, color } = req.body;
@@ -41,7 +39,6 @@ const addToCart = async (req, res) => {
       });
     }
 
-    // Check if product already exists in cart
     const existingItem = cart.items.find(
       item => item.product.toString() === productId
     );
@@ -60,7 +57,6 @@ const addToCart = async (req, res) => {
       });
     }
 
-    // Calculate total price
     cart.totalPrice = cart.items.reduce(
       (total, item) => total + item.price * item.quantity,
       0
@@ -73,7 +69,6 @@ const addToCart = async (req, res) => {
   }
 };
 
-// Update Cart Item Quantity
 const updateCartItem = async (req, res) => {
   try {
     const { itemId } = req.params;
@@ -93,7 +88,6 @@ const updateCartItem = async (req, res) => {
 
     item.quantity = quantity;
 
-    // Recalculate total price
     cart.totalPrice = cart.items.reduce(
       (total, item) => total + item.price * item.quantity,
       0
@@ -106,7 +100,6 @@ const updateCartItem = async (req, res) => {
   }
 };
 
-// Remove Item from Cart
 const removeFromCart = async (req, res) => {
   try {
     const { itemId } = req.params;
@@ -121,7 +114,6 @@ const removeFromCart = async (req, res) => {
       item => item._id.toString() !== itemId
     );
 
-    // Recalculate total price
     cart.totalPrice = cart.items.reduce(
       (total, item) => total + item.price * item.quantity,
       0
@@ -134,7 +126,6 @@ const removeFromCart = async (req, res) => {
   }
 };
 
-// Clear Cart
 const clearCart = async (req, res) => {
   try {
     const cart = await Cart.findOne({ user: req.user._id });
