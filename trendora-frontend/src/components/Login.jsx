@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { FaGoogle, FaFacebook, FaApple, FaTimes, FaArrowRight, FaLock, FaEnvelope } from 'react-icons/fa';
 import API from '../api';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
   const [isLogin, setIsLogin] = useState(true);
@@ -33,6 +34,8 @@ const Login = () => {
       localStorage.setItem('token', response.data.token);
       localStorage.setItem('user', JSON.stringify(response.data));
 
+ setIsLoggedIn(true);       
+      navigate("/"); 
       setMessage(`${isLogin ? 'Login' : 'Registration'} successful!`);
       console.log('Logged in:', response.data);
       
