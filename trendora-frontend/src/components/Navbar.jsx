@@ -5,8 +5,12 @@ import {
   FaUser
 } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
+import Login from "./Login";
+import Hero from "./Hero";
 
-const Navbar = () => {
+
+
+const Navbar = ({ setIsLoggedIn }) => {
   const navigate = useNavigate();
 
   const handleLogout = () => {

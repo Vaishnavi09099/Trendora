@@ -1,49 +1,52 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+
 import Navbar from "./components/Navbar";
 import Login from "./components/Login";
+import Hero from "./components/Hero";
 
-// dummy pages
-const Home = () => <div className="p-10 text-2xl">Home Page</div>;
-const Profile = () => <div className="p-10 text-2xl">Profile Page</div>;
 
 function App() {
-  // ✅ State to track login
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [isLoggedIn, setIsLoggedIn] = useState(
+    !!localStorage.getItem("token")
+  );
 
-  // ✅ Check localStorage on mount
-  useEffect(() => {
-    setIsLoggedIn(!!localStorage.getItem("token"));
-  }, []);
 
   return (
     <BrowserRouter>
-      {/* Navbar sirf tab dikhegi jab user logged-in ho */}
+      {/* Navbar sirf login ke baad */}
       {isLoggedIn && <Navbar setIsLoggedIn={setIsLoggedIn} />}
 
       <Routes>
-        {/* LOGIN ROUTE */}
+        {/* LOGIN */}
         <Route
           path="/login"
           element={
-            isLoggedIn ? <Navigate to="/" /> : <Login setIsLoggedIn={setIsLoggedIn} />
+            isLoggedIn ? (
+              <Navigate to="/" replace />
+            ) : (
+              <Login setIsLoggedIn={setIsLoggedIn} />
+            )
           }
         />
 
-        {/* HOME (PROTECTED) */}
+        {/* HOME */}
         <Route
           path="/"
-          element={isLoggedIn ? <Home /> : <Navigate to="/login" />}
+          element={
+            isLoggedIn ? <Hero /> : <Navigate to="/login" replace />
+          }
         />
 
-        {/* PROFILE (PROTECTED) */}
+      
+
+        {/* 404 / FALLBACK */}
         <Route
-          path="/profile"
-          element={isLoggedIn ? <Profile /> : <Navigate to="/login" />}
+          path="*"
+          element={
+            <Navigate to={isLoggedIn ? "/" : "/login"} replace />
+          }
         />
-
-        {/* fallback route */}
-        <Route path="*" element={<Navigate to={isLoggedIn ? "/" : "/login"} />} />
       </Routes>
     </BrowserRouter>
   );
