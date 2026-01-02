@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { FaArrowLeft, FaArrowRight, FaPlus } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
+
 import API from '../api';
+import Products from './Products';
 
 const Hero = () => {
   const [products, setProducts] = useState([]);
@@ -68,7 +70,7 @@ const Hero = () => {
         <p className="text-gray-600 text-sm mb-8">2024</p>
         
         <button 
-          onClick={() => navigate('/collections')}
+          onClick={() => navigate('/products')}
           className="flex items-center gap-4 px-6 py-2 bg-gray-200 hover:bg-gray-300 transition rounded-md"
         >
           Go To Shop

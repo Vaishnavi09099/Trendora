@@ -7,6 +7,8 @@ import {
 import { Link, useNavigate } from "react-router-dom";
 import Login from "./Login";
 import Hero from "./Hero";
+import Products from "./Products";
+
 
 
 
@@ -34,7 +36,7 @@ const Navbar = ({ setIsLoggedIn }) => {
 
           <div className="flex gap-6">
             <Link to="/" className="hover:opacity-70">Home</Link>
-            <Link to="/collections" className="hover:opacity-70">Collections</Link>
+            <Link to="/products" className="hover:opacity-70">Collections</Link>
             <Link to="/new" className="hover:opacity-70">New</Link>
             
           </div>
