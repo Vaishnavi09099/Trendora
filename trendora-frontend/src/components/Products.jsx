@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FaPlus } from 'react-icons/fa';
 import API from '../api';
+import ProductDetail from './ProductDetail';
+
 
 const Products = () => {
   const [products, setProducts] = useState([]);

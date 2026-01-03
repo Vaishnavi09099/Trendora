@@ -5,6 +5,8 @@ import Navbar from "./components/Navbar";
 import Login from "./components/Login";
 import Hero from "./components/Hero";
 import Products from "./components/Products";
+import ProductDetail from "./components/ProductDetail";
+
 
 
 function App() {
@@ -38,14 +40,19 @@ function App() {
             isLoggedIn ? <Hero /> : <Navigate to="/login" replace />
           }
         />
-         {/* Products/Collections Route - Protected */}
+        
         <Route
           path="/products"
           element={
             isLoggedIn ? <Products /> : <Navigate to="/login" replace />
           }
         />
-      
+       <Route
+          path="/product/:id"
+          element={
+            isLoggedIn ? <ProductDetail /> : <Navigate to="/login" replace />
+          }
+        />
 
         <Route
           path="*"
