@@ -7,6 +7,8 @@ import Hero from "./components/Hero";
 import Products from "./components/Products";
 import ProductDetail from "./components/ProductDetail";
 import Cart from "./components/Cart";
+import Checkout from "./components/Checkout";
+
 
 
 
@@ -60,6 +62,14 @@ function App() {
           path="/cart"
           element={
             isLoggedIn ? <Cart /> : <Navigate to="/login" replace />
+          }
+        />
+
+
+           <Route
+          path="/checkout"
+          element={
+            isLoggedIn ? <Checkout /> : <Navigate to="/login" replace />
           }
         />
 
