@@ -39,10 +39,10 @@ const Login = ({ setIsLoggedIn }) => {
 
       setMessage(`${isLogin ? 'Login' : 'Registration'} successful!`);
       
-      // Update parent state & navigate
+      
            localStorage.setItem("token", response.data.token);
       setIsLoggedIn(true);
-      setTimeout(() => navigate('/'), 1500); // Wait 1.5s to show message
+      setTimeout(() => navigate('/'), 1500);
  
 
 

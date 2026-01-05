@@ -6,6 +6,8 @@ import Login from "./components/Login";
 import Hero from "./components/Hero";
 import Products from "./components/Products";
 import ProductDetail from "./components/ProductDetail";
+import Cart from "./components/Cart";
+
 
 
 
@@ -51,6 +53,13 @@ function App() {
           path="/product/:id"
           element={
             isLoggedIn ? <ProductDetail /> : <Navigate to="/login" replace />
+          }
+        />
+
+         <Route
+          path="/cart"
+          element={
+            isLoggedIn ? <Cart /> : <Navigate to="/login" replace />
           }
         />
 
